@@ -1,0 +1,44 @@
+service: project-d4-api
+
+frameworkVersion: "2.46.0" #"2.41.2"
+
+provider:
+  name: aws
+  region: us-west-2
+  runtime: nodejs14.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-west-2:429937773353:table/data_d4" #Our ARN goes here.
+
+functions:
+
+  get:
+    handler: todos/get.get
+    events:
+      - http:
+          path: bank/{account_id}
+          method: get
+          cors: true
+
+  post:
+    handler: todos/create.create
+    events:
+      - http:
+          path: bank
+          method: post
+          cors: true
+
+  list:
+    handler: todos/list.list
+    events:
+      - http:
+          path: bank
+          method: get
+          cors: true

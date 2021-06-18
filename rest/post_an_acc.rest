@@ -1,0 +1,9 @@
+POST  https://4spnzdut6d.execute-api.us-west-2.amazonaws.com/dev/bank
+Content-Type: application/json
+
+{
+    "account_id" : "test2",
+    "Acc_num" : 123456, 
+    "Checking" : 10000,
+    "Saving" : 10000
+}
